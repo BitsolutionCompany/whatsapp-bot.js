@@ -7,7 +7,7 @@ const client = new Client({
   webVersionCache: {
     type: "remote",
     remotePath:
-      "https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2412.54.html",
+      "https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2413.51-beta.html",
   },
 });
 
@@ -48,68 +48,18 @@ client.on("message", (message) => {
         setTimeout(() => {
           message.reply(`
             Selecione uma opção:
-            1 - Cadastro
-            2 - Faça uma pergunta
-            3 - Verifique seu pedido
-            4 - Cancelar
+            1 - Site
+            2 - Dúvidas
           `);
         }, 1000);
-        reset();
     }
     switch(msg){
       case '1':
-        message.reply('Por favor, informe seu nome:');
-        client.on('message', async(message) => {
-          const msg1 = message.body.toLocaleLowerCase()
-          const nome = msg1
-          
-          conversationState = 1;
-          if(conversationState === 1){
-            await message.reply(`Bem Vindo, ${nome}, para continuar seu cadastro envie seus dados pessoais!`)
-            setTimeout(() => {
-              client.sendMessage(message.from, `Informe se CPF: `);
-            }, 1000);
-            client.on('message', async (message) =>{
-              const msg2 = message.body.toLocaleLowerCase()
-              const cpf = msg2
-
-              conversationState = 2;
-              if(conversationState = 2){
-                await message.reply('CPF registrado, agora envie o nome da sua mãe: ')
-                client.on('message', async(message) => {
-                  const msg3 = message.body.toLocaleLowerCase()
-                  const nomeM = msg3
-
-                  conversationState = 3;
-                  if(conversationState === 3){
-                    await message.reply(`Sua mãe é ${nomeM}, agora Informe o Nome do seu Pai: `)
-                    client.on('message', async(message) => {
-                      const msg4 = message.body.toLocaleLowerCase()
-                      const nomeP = msg4
-
-                      conversationState = 4;
-                      if(conversationState === 4){
-                        await message.reply(`Seu pai é: ${nomeP}`)
-                      }
-                    })
-                  }
-                })
-              }
-            })
-          }
-        })
-        break;
-      case '2':
-        message.reply('Você escolheu fazer uma pergunta! Por favor, digite sua pergunta:');
-        break;
-      case '3':
-        message.reply('Você escolheu verificar seu pedido! Por favor, digite o número do seu pedido:');
-        break;
-      case '4':
-        message.reply('Você escolheu cancelar! Obrigado por utilizar nosso serviço.');
-        break;
-      // default:
-      //   message.reply('Opção inválida. Por favor, selecione uma opção válida.');
+        message.reply('Esse é o nosso site, lá você pode realizar compras, se cadastrar e se tornar uma consultora.\n'+
+         '*Link para compras: https://biacosmetico.com.br/store* \n' +
+         '*Link para Ser Consultora: https://biacosmetico.com.br/store/cadastro_consultora.php* \n' +
+         '*Ofertas: https://biacosmetico.com.br/store/ofertas.php*')
+        break
     }
 });
 
